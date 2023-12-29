@@ -1,8 +1,11 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text } from 'react-native'
+import Background from '../components/Background'
 
 export default function Dashboard() {
   return (
-    <View>aaa</View>
+    <Background classNameData={'w-screen h-screen p-5'}>
+      <Text className={'text-white'}>aaa</Text>
+    </Background>
   )
 }
