@@ -4,7 +4,7 @@ import Background from '../components/Background'
 
 export default function Dashboard() {
   return (
-    <Background classNameData={'w-screen h-screen p-5'}>
+    <Background classNameData={'w-screen min-h-screen px-5 pt-10'}>
       <View className={'flex items-center justify-center gap-3'}>
         <View className={'bg-white w-20 h-20 rounded-full'} />
         <Text className='text-white text-xl'>username</Text>
@@ -26,10 +26,10 @@ export default function Dashboard() {
           <Text className='text-white text-sm'>Rank</Text>
         </View>
       </View>
-      <View className='mt-3'>
+      <View className='mt-3 px-3'>
         <Text className='text-white font-bold text-xl'>Quests</Text>
         <View className='flex-col gap-3 mt-3'>
-          <View className='rounded-xl bg-white w-full p-3 flex-row justify-between items-center'>
+          <View className='rounded-xl bg-white p-3 flex-row justify-between items-center'>
             <Text>
               Walk 5000 steps
             </Text>
@@ -39,26 +39,27 @@ export default function Dashboard() {
               </Text>
             </TouchableHighlight>
           </View>
-          <View className='rounded-xl bg-white w-full p-3 flex-row justify-between items-center'>
+          <View className='rounded-xl bg-white p-3 flex-row justify-between items-center'>
             <Text>
-              Walk 5000 steps
+              Walk 10000 steps
             </Text>
-            <TouchableHighlight className='bg-[#FEDE00] p-2 rounded-xl' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
+            <TouchableHighlight className='bg-gray-400 p-2 rounded-xl' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
               <Text>
                 Collect
               </Text>
             </TouchableHighlight>
           </View>
-          <View className='rounded-xl bg-white w-full p-3 flex-row justify-between items-center'>
+          <View className='rounded-xl bg-white p-3 flex-row justify-between items-center'>
             <Text>
-              Walk 5000 steps
+              Walk 15000 steps
             </Text>
-            <TouchableHighlight className='bg-[#FEDE00] p-2 rounded-xl' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
+            <TouchableHighlight className='bg-gray-400 p-2 rounded-xl' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
               <Text>
                 Collect
               </Text>
             </TouchableHighlight>
           </View>
+          
         </View>
       </View>
     </Background>

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@reduxjs/toolkit": "^2.0.1",
     "expo": "~49.0.15",
     "expo-constants": "~14.4.2",

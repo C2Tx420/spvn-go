@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
 
 export default function Index() {
-  const user = 'aaa';
+  const user = '';
   if (user) {
     return <Redirect href={'/dashboard'} />
   } else {
