@@ -1,8 +1,10 @@
-import React from 'react'
-import { Image, Text, TouchableHighlight, View } from 'react-native'
+import React, { useRef } from 'react'
+import { Image, SafeAreaView, Text, TouchableHighlight, View } from 'react-native'
 import Background from '../components/Background'
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 export default function Dashboard() {
+  let canonRef;
   return (
     <Background classNameData={'w-screen min-h-screen px-5 pt-10'}>
       <View className={'flex items-center justify-center gap-3'}>
@@ -33,7 +35,11 @@ export default function Dashboard() {
             <Text>
               Walk 5000 steps
             </Text>
-            <TouchableHighlight className='bg-[#FEDE00] p-2 rounded-xl' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
+            <TouchableHighlight
+              className='bg-[#FEDE00] p-2 rounded-xl'
+              style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}
+              onPress={()=>{canonRef.start()}}
+            >
               <Text>
                 Collect
               </Text>
@@ -59,9 +65,15 @@ export default function Dashboard() {
               </Text>
             </TouchableHighlight>
           </View>
-          
         </View>
       </View>
+      <ConfettiCannon
+        count={200}
+        origin={{ x: -1000, y: 0}}
+        autoStart={false}
+        fadeOut
+        ref={ref => (canonRef = ref)}
+      />
     </Background>
   )
 }
