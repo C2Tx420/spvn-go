@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { collectQuest } from '../store/slices/questSlice';
 import { SvgUri } from 'react-native-svg';
-import { createAvatar } from '../lib/utils';
+import { createAvatar, getRank } from '../lib/utils';
 
 export default function Dashboard() {
   let canonRef;
@@ -40,7 +40,7 @@ export default function Dashboard() {
           <Text className='text-white text-sm'>Points</Text>
         </View>
         <View className='flex-col justify-center items-center'>
-          <Text className='text-white text-xl font-bold'>#N/A</Text>
+          <Text className='text-white text-xl font-bold'>{getRank(leaderboard, user.email)}</Text>
           <Text className='text-white text-sm'>Rank</Text>
         </View>
       </View>
