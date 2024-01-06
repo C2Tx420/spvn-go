@@ -1,15 +1,28 @@
 import React, { useState } from 'react'
-import { Image, Pressable, Text, TouchableHighlight, View } from 'react-native'
+import { Image, Linking, Pressable, Text, View } from 'react-native'
 import Background from '../components/Background'
 import { mainCl } from '../constant/style';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from '../services/apiService';
+import { getSOLtoUSD } from '../lib/utils';
 
 export default function award() {
+    const { post } = ApiService;
     const user = useSelector((state) => state.user);
     const leaderboard = useSelector((state) => state.leaderboard);
     const [currentView, setCurrentView] = useState('basic');
+    const handleCheckout = async () => {
+        const { url } = await post(
+            `https://api.gameshift.dev/asset-templates/${process.env.EXPO_PUBLIC_PREMIUM_TICKET}/checkout`,
+            {
+                amountCents: Number(await getSOLtoUSD()) * 1000,
+                quantity: 1,
+                buyerId: user.referenceId
+            },
+            { headers: { 'x-api-key': process.env.EXPO_PUBLIC_GAMESHIFT_KEY } }
+        )
+        Linking.openURL(url);
+    }
     return (
         <View className={'h-screen bg-[#F2F2F2]'}>
             <Background classNameData='w-screen h-1/2 rounded-b-3xl pt-10 relative'>
@@ -124,11 +137,15 @@ export default function award() {
                         <Text className='text-white font-bold text-3xl text-center'>
                             to get more Prize
                         </Text>
-                        <TouchableHighlight className='bg-[#FEDE00] px-20 py-3 rounded-full my-3' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
+                        <Pressable
+                            className='bg-[#FEDE00] px-20 py-3 rounded-full my-3'
+                            style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}
+                            onPress={handleCheckout}
+                        >
                             <Text className='text-[#000000] font-semibold text-xl'>
                                 Join with 0.1 SOL
                             </Text>
-                        </TouchableHighlight>
+                        </Pressable>
                         <Text className='text-white font-bold text-3xl text-center'>
                             Current Prize: 1.5 SOL🔥
                         </Text>
