@@ -7,11 +7,12 @@ import { store } from '../store/store'
 
 export default function RootLayout() {
   const pathname = usePathname();
+  const hideNavbar = ['/', '/login']
   return (
     <Provider store={store}>
       <View>
         <Slot />
-        {!/^(\/(?!$|login$)|[^/]+)$/i.test(pathname) &&
+        {!hideNavbar.find(path => path === pathname) &&
           <NavBar />
         }
       </View>

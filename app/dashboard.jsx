@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { collectQuest } from '../store/slices/questSlice';
 import { SvgUri } from 'react-native-svg';
 import { createAvatar, getRank } from '../lib/utils';
+import { setUser } from '../store/slices/userSlice';
 
 export default function Dashboard() {
   let canonRef;
@@ -36,7 +37,7 @@ export default function Dashboard() {
           <Text className='text-white text-sm'>Steps</Text>
         </View>
         <View className='flex-col justify-center items-center'>
-          <Text className='text-white text-xl font-bold'>10</Text>
+          <Text className='text-white text-xl font-bold'>{user.point}</Text>
           <Text className='text-white text-sm'>Points</Text>
         </View>
         <View className='flex-col justify-center items-center'>
@@ -60,6 +61,7 @@ export default function Dashboard() {
                     disabled={step <= quest.require}
                     onPress={() => {
                       dispatch(collectQuest(quest.id));
+                      dispatch(setUser({ ...user, point: Number(user.point) + Number(quest.point) }))
                       canonRef.start();
                     }}
                   >

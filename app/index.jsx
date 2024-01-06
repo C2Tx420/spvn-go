@@ -19,7 +19,7 @@ export default function Index() {
         { headers: { 'x-api-key': process.env.EXPO_PUBLIC_GAMESHIFT_KEY } }
       )
       if (response) {
-        dispatch(setUser(response));
+        dispatch(setUser({ ...response, point: 11 }));
         dispatch(calculate({ ...response, point: 11 }));
         setTimeout(() => {
           router.replace('/dashboard');
