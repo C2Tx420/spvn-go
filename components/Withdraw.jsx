@@ -1,9 +1,25 @@
 import React, { useState } from 'react'
-import { Modal, Pressable, Text, TextInput, View } from 'react-native'
+import { Linking, Modal, Pressable, Text, TextInput, View } from 'react-native'
+import { ApiService } from '../services/apiService';
+import { useSelector } from 'react-redux';
 
-export default function Withdraw() {
+export default function Withdraw(item) {
+    const { post } = ApiService;
+    const user = useSelector((state) => state.user);
     const [isShow, setIsShow] = useState(false);
     const [value, setValue] = useState('')
+    const handleWithdraw = async () => {
+        const url = await post(
+            `https://api.gameshift.dev/assets/${item.item.id}/transfer`,
+            {
+                onBehalfOf: user.referenceId,
+                destinationWallet: value
+            },
+            { headers: { 'x-api-key': process.env.EXPO_PUBLIC_GAMESHIFT_KEY } }
+        )
+        Linking.openURL(url);
+        setIsShow(false)
+    }
     return (
         <>
             <Modal
@@ -42,9 +58,7 @@ export default function Withdraw() {
                         <Pressable
                             className={`bg-[#FEDE00] p-2 px-5 rounded-xl`}
                             style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}
-                            onPress={() => {
-                                setIsShow(false)
-                            }}
+                            onPress={handleWithdraw}
                         >
                             <Text>
                                 Confirm

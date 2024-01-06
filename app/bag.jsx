@@ -32,7 +32,7 @@ export default function bag() {
                             />
                             <Text className='font-semibold'>{item.name}</Text>
                         </View>
-                        <Withdraw />
+                        <Withdraw item={item}/>
                     </View>
                 )}
             </View>
