@@ -1,4 +1,4 @@
-import { faGift, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faBriefcase, faGift, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { usePathname, useRouter } from 'expo-router';
 import React from 'react'
@@ -18,6 +18,9 @@ export default function NavBar() {
                 </Pressable>
                 <Pressable onPress={() => { router.replace('/award') }}>
                     <FontAwesomeIcon icon={faGift} size={28} color={pathname === '/award' ? mainCl : '#909090'} />
+                </Pressable>
+                <Pressable onPress={() => { router.replace('/bag') }}>
+                    <FontAwesomeIcon icon={faBriefcase} size={28} color={pathname === '/bag' ? mainCl : '#909090'} />
                 </Pressable>
             </View>
         </View>

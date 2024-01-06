@@ -8,6 +8,7 @@ import { collectQuest } from '../store/slices/questSlice';
 import { SvgUri } from 'react-native-svg';
 import { createAvatar, getRank } from '../lib/utils';
 import { setUser } from '../store/slices/userSlice';
+import { updateLeaderboard } from '../store/slices/leaderboardSlice';
 
 export default function Dashboard() {
   let canonRef;
@@ -62,6 +63,7 @@ export default function Dashboard() {
                     onPress={() => {
                       dispatch(collectQuest(quest.id));
                       dispatch(setUser({ ...user, point: Number(user.point) + Number(quest.point) }))
+                      dispatch(updateLeaderboard({ ...user, point: Number(user.point) + Number(quest.point) }))
                       canonRef.start();
                     }}
                   >

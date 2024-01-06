@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import { Image, Pressable, SafeAreaView, Text, TouchableHighlight, View } from 'react-native'
+import { Image, Pressable, Text, TouchableHighlight, View } from 'react-native'
 import Background from '../components/Background'
 import { mainCl } from '../constant/style';
-import SkyBg from '../components/asset/SkyBg';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 
 export default function award() {
+    const user = useSelector((state) => state.user);
+    const leaderboard = useSelector((state) => state.leaderboard);
     const [currentView, setCurrentView] = useState('basic');
     return (
         <View className={'h-screen bg-[#F2F2F2]'}>
@@ -20,118 +24,86 @@ export default function award() {
                     </Pressable>
                 </View>
                 <View className='p-5 pt-16 flex-col gap-5'>
-                    <View className='rounded-xl bg-white p-3 flex-row items-center'>
+                    <View className={`rounded-xl bg-white p-3 flex-row items-center ${user.email === leaderboard[0].email && 'bg-yellow-100'}`}>
                         <Image source={require('../assets/1st.png')} className='w-10 h-10 object-center object-cover mr-3' />
                         <View>
-                            <Text className='text-base font-semibold'>
-                                userName
+                            <Text className='text-base font-semibold w-28' numberOfLines={1}>
+                                {leaderboard[0].email}
                             </Text>
                             <Text className='text-xs opacity-70'>
-                                100 Points
+                                {leaderboard[0].point} Points
                             </Text>
                         </View>
                         <View className='rounded-full ml-auto flex-row'>
-                            <Text className={`text-sm text-orange-400 font-semibold`}>
+                            {/* <Text className={`text-sm text-orange-400 font-semibold`}>
                                 100 USD
-                            </Text>
+                            </Text> */}
                             <Text>
-                                🔥
+                                🔥🔥🔥
                             </Text>
                         </View>
                     </View>
-                    <View className='rounded-xl bg-white p-3 flex-row items-center'>
+                    <View className={`rounded-xl bg-white p-3 flex-row items-center ${user.email === leaderboard[1].email && 'bg-yellow-100'}`}>
                         <Image source={require('../assets/2nd.png')} className='w-10 h-10 object-center object-cover mr-3' />
                         <View>
-                            <Text className='text-base font-semibold'>
-                                userName
+                            <Text className='text-base font-semibold w-28' numberOfLines={1}>
+                                {leaderboard[1].email}
                             </Text>
                             <Text className='text-xs opacity-70'>
-                                100 Points
+                                {leaderboard[1].point} Points
                             </Text>
                         </View>
                         <View className='rounded-full ml-auto flex-row'>
-                            <Text className={`text-sm text-orange-400 font-semibold`}>
+                            {/* <Text className={`text-sm text-orange-400 font-semibold`}>
                                 100 USD
-                            </Text>
+                            </Text> */}
                             <Text>
-                                🔥
+                                🔥🔥
                             </Text>
                         </View>
                     </View>
-                    <View className='rounded-xl bg-white p-3 flex-row items-center'>
+                    <View className={`rounded-xl bg-white p-3 flex-row items-center ${user.email === leaderboard[2].email && 'bg-yellow-100'}`}>
                         <Image source={require('../assets/3rd.png')} className='w-10 h-10 object-center object-cover mr-3' />
                         <View>
-                            <Text className='text-base font-semibold'>
-                                userName
+                            <Text className='text-base font-semibold w-28' numberOfLines={1}>
+                                {leaderboard[2].email}
                             </Text>
                             <Text className='text-xs opacity-70'>
-                                100 Points
+                                {leaderboard[3].point} Points
                             </Text>
                         </View>
                         <View className='rounded-full ml-auto flex-row'>
-                            <Text className={`text-sm text-orange-400 font-semibold`}>
+                            {/* <Text className={`text-sm text-orange-400 font-semibold`}>
                                 100 USD
-                            </Text>
+                            </Text> */}
                             <Text>
                                 🔥
                             </Text>
                         </View>
                     </View>
+                </View>
+                <View className='-mt-3 px-5 w-60 rounded-full mx-auto bg-white'>
+                    <Text className='text-xs text-gray-500 leading-3 py-1' numberOfLines={1}>
+                        This rank will be reset every month
+                    </Text>
                 </View>
             </Background>
             <View className='p-5 pt-5 flex-col gap-5'>
-                <View className='rounded-xl bg-white p-3 flex-row items-center'>
-                    <View className='mr-3 border rounded-full w-8 h-8 flex items-center justify-center'>
-                        <Text className='font-semibold'>4</Text>
+                {leaderboard.slice(3, 7).map((player, idx) =>
+                    <View className={`rounded-xl bg-white p-3 flex-row items-center ${user.email === player.email && 'bg-yellow-100'}`} key={idx}>
+                        <View className='mr-3 border rounded-full w-8 h-8 flex items-center justify-center'>
+                            <Text className='font-semibold'>{idx + 4}</Text>
+                        </View>
+                        <View>
+                            <Text className='text-base font-semibold w-28' numberOfLines={1}>
+                                {player.email}
+                            </Text>
+                            <Text className='text-xs opacity-70'>
+                                {player.point} Points
+                            </Text>
+                        </View>
                     </View>
-                    <View>
-                        <Text className='text-base font-semibold'>
-                            userName
-                        </Text>
-                        <Text className='text-xs opacity-70'>
-                            100 Points
-                        </Text>
-                    </View>
-                </View>
-                <View className='rounded-xl bg-white p-3 flex-row items-center'>
-                    <View className='mr-3 border rounded-full w-8 h-8 flex items-center justify-center'>
-                        <Text className='font-semibold'>5</Text>
-                    </View>
-                    <View>
-                        <Text className='text-base font-semibold'>
-                            userName
-                        </Text>
-                        <Text className='text-xs opacity-70'>
-                            100 Points
-                        </Text>
-                    </View>
-                </View>
-                <View className='rounded-xl bg-white p-3 flex-row items-center'>
-                    <View className='mr-3 border rounded-full w-8 h-8 flex items-center justify-center'>
-                        <Text className='font-semibold'>5</Text>
-                    </View>
-                    <View>
-                        <Text className='text-base font-semibold'>
-                            userName
-                        </Text>
-                        <Text className='text-xs opacity-70'>
-                            100 Points
-                        </Text>
-                    </View>
-                </View>
-                <View className='rounded-xl bg-white p-3 flex-row items-center'>
-                    <View className='mr-3 border rounded-full w-8 h-8 flex items-center justify-center'>
-                        <Text className='font-semibold'>7</Text>
-                    </View>
-                    <View>
-                        <Text className='text-base font-semibold'>
-                            userName
-                        </Text>
-                        <Text className='text-xs opacity-70'>
-                            100 Points
-                        </Text>
-                    </View>
-                </View>
+                )}
             </View>
             {currentView === 'premium' &&
                 <View className='absolute w-full h-full z-10 bg-[#747373f5]'>
@@ -150,13 +122,16 @@ export default function award() {
                             Join Premium
                         </Text>
                         <Text className='text-white font-bold text-3xl text-center'>
-                            to get more Prize 🔥
+                            to get more Prize
                         </Text>
-                        <TouchableHighlight className='bg-[#FEDE00] px-20 py-3 rounded-full mt-3' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
+                        <TouchableHighlight className='bg-[#FEDE00] px-20 py-3 rounded-full my-3' style={{ filter: 'drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.49))' }}>
                             <Text className='text-[#000000] font-semibold text-xl'>
-                                Join with 10$
+                                Join with 0.1 SOL
                             </Text>
                         </TouchableHighlight>
+                        <Text className='text-white font-bold text-3xl text-center'>
+                            Current Prize: 1.5 SOL🔥
+                        </Text>
                     </View>
                 </View>}
         </View>

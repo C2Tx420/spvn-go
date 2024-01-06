@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ApiService } from '../services/apiService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/slices/userSlice';
-import { calculate } from '../store/slices/leaderboardSlice';
+import { updateLeaderboard } from '../store/slices/leaderboardSlice';
 import Background from '../components/Background';
 import { Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -18,9 +18,10 @@ export default function Index() {
       let response = await get(`https://api.gameshift.dev/users/${user}`,
         { headers: { 'x-api-key': process.env.EXPO_PUBLIC_GAMESHIFT_KEY } }
       )
+      console.log(response);
       if (response) {
         dispatch(setUser({ ...response, point: 11 }));
-        dispatch(calculate({ ...response, point: 11 }));
+        dispatch(updateLeaderboard({ ...response, point: 11 }));
         setTimeout(() => {
           router.replace('/dashboard');
         }, 1000)
