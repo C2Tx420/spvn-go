@@ -15,7 +15,7 @@ export default function award() {
         const { url } = await post(
             `https://api.gameshift.dev/asset-templates/${process.env.EXPO_PUBLIC_PREMIUM_TICKET}/checkout`,
             {
-                amountCents: Number(await getSOLtoUSD()) * 1000,
+                amountCents: (Number(await getSOLtoUSD()) * 0.1) * 100,
                 quantity: 1,
                 buyerId: user.referenceId
             },

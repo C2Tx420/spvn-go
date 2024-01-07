@@ -22,7 +22,7 @@ export default function bag() {
             <Text className='text-white text-center font-semibold text-3xl'>
                 Inventory
             </Text>
-            <View className='p-5'>
+            <View className='p-5 flex-col gap-3'>
                 {inventory.map((item, idx) =>
                     <View className='p-5 bg-white rounded-xl flex-row items-center justify-between' key={idx}>
                         <View className='flex-row items-center gap-3'>
